@@ -2,10 +2,8 @@ package com.example.springboot.tests.demo.math;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.stream.Stream;
 
@@ -21,6 +19,14 @@ class SimpleMathTestS4 {
         math = new SimpleMath();
         System.out.println("Running @BeforeEach method!");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Pelé", "Senna", "Keith Moon"})
+    void testValueSource(String firstName) {
+        System.out.println(firstName);
+        assertNotNull(firstName);
+    }
+
 
 
     @DisplayName("Test 6 / 3 = 2")
