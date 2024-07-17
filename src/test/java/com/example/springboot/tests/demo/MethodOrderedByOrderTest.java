@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 // common in integration tests when tests has dependencies between them
+@Order(1) // for classes order work I need to set up junit properties at test/resources
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MethodOrderedByOrderTest {
 

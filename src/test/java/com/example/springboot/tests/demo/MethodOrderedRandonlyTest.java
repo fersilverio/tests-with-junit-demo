@@ -1,9 +1,10 @@
 package com.example.springboot.tests.demo;
 
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-
+@Order(2)
 @TestMethodOrder(MethodOrderer.Random.class)
 public class MethodOrderedRandonlyTest {
 
