@@ -13,6 +13,7 @@ import com.examples.mockito.services.CourseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
 
 public class CourseBusinessMockWithBDDTest {
@@ -103,5 +104,35 @@ public class CourseBusinessMockWithBDDTest {
         then(mockService)
                 .should(never())
                 .deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
+    }
+
+    @DisplayName("Delete Courses not Related to Spring Capturing Arguments sould call Method deleteCourse")
+    @Test
+    void testDeleteCoursesNotRelatedToSpring_CapturingArguments_Should_CallMethod_deleteCourse() {
+
+        // Given / Arrange
+
+        /*
+        courses = Arrays.asList(
+                "Agile Desmistificado com Scrum, XP, Kanban e Trello",
+                "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker"
+            );
+            */
+
+        given(mockService.retrieveCourses("Leandro"))
+                .willReturn(courses);
+
+        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+
+        //String agileCourse = "Agile Desmistificado com Scrum, XP, Kanban e Trello";
+
+        // When / Act
+        business.deleteCoursesNotRelatedToSpring("Leandro");
+
+        // then(mockService).should().deleteCourse(argumentCaptor.capture());
+        // assertThat(argumentCaptor.getValue(), is("Agile Desmistificado com Scrum, XP, Kanban e Trello"));
+
+        then(mockService).should(times(7)).deleteCourse(argumentCaptor.capture());
+        assertThat(argumentCaptor.getAllValues().size(), is(7));
     }
 }
