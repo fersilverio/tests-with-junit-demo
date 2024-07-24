@@ -22,6 +22,16 @@ public class CourseServiceStub implements CourseService {
         );
     }
 
+    @Override
+    public List<String> doSomething(String student) {
+        return null;
+    }
+
+    @Override
+    public void deleteCourse(String course) {
+
+    }
+
     /*
     *   Uma vantagem clara de usar interfaces se da pela possibilidade de fazer stubs pois torna possível já criar
     * testes, bastando apenas seguir o contrato
