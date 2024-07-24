@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CourseBusinessTest {
+public class CourseBusinessStubTest {
     @Test
     void testCoursesRelatedToSpring_When_UsingAStub() {
         /// Given

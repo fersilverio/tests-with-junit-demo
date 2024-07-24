@@ -1,13 +1,29 @@
-package com.examples.mockito.services.stubs;
+package com.examples.mockito.business;
 
 import com.examples.mockito.services.CourseService;
+import com.examples.mockito.services.stubs.CourseServiceStub;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CourseServiceStub implements CourseService {
-    public List<String> retrieveCourses(String student) {
-        return Arrays.asList(
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class CourseBusinessMockTest {
+
+    CourseService mockService;
+    CourseBusiness business;
+    List<String> courses;
+
+    @BeforeEach
+    void setup() {
+        mockService = mock(CourseService.class);
+        business = new CourseBusiness(mockService);
+
+        courses = Arrays.asList(
                 "REST API's RESTFul do 0 à Azure com ASP.NET Core 5 e Docker",
                 "Agile Desmistificado com Scrum, XP, Kanban e Trello",
                 "Spotify Engineering Culture Desmistificado",
@@ -21,11 +37,14 @@ public class CourseServiceStub implements CourseService {
                 "Microsserviços do 0 com Spring Cloud, Kotlin e Docker"
         );
     }
+    @Test
+    void testCoursesRelatedToSpring_When_UsingMock() {
+        // Given / Arrange
+        when(mockService.retrieveCourses("Fernando")).thenReturn(courses);
 
-    /*
-    *   Uma vantagem clara de usar interfaces se da pela possibilidade de fazer stubs pois torna possível já criar
-    * testes, bastando apenas seguir o contrato
-    *   Porem a desvantagem é ter que revisar cada stub a cada vez que implementarem algo na interface
-    *
-    * */
+        //When
+        var filteredCourses = business.retrieveCoursesRelatedToSpring("Fernando");
+        // Then / Assert
+        assertEquals(4, filteredCourses.size());
+    }
 }
