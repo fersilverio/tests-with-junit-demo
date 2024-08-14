@@ -84,7 +84,7 @@ public class CourseBusinessMockWithBDDTest {
                 .deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
     }
 
-    @DisplayName("Delete Courses not Related to Spring Using Mockito sould call Method deleteCourse V2")
+    @DisplayName("Delete Courses not Related to Spring Using Mockito should call Method deleteCourse V2")
     @Test
     void testDeleteCoursesNotRelatedToSpring_UsingMockitoVerify_Should_CallMethod_deleteCourseV2() {
 
@@ -106,7 +106,7 @@ public class CourseBusinessMockWithBDDTest {
                 .deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
     }
 
-    @DisplayName("Delete Courses not Related to Spring Capturing Arguments sould call Method deleteCourse")
+    @DisplayName("Delete Courses not Related to Spring Capturing Arguments should call Method deleteCourse")
     @Test
     void testDeleteCoursesNotRelatedToSpring_CapturingArguments_Should_CallMethod_deleteCourse() {
 
